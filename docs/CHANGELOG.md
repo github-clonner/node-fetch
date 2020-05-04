@@ -1,9 +1,86 @@
-
 Changelog
 =========
 
+# 3.x release
+
+## v3.0.0-beta.5
+
+> NOTE: Since the previous beta version included serious issues, such as [#749](https://github.com/node-fetch/node-fetch/issues/749), they will now be deprecated. 
+
+- Enhance: use built-in AbortSignal for typings.
+- Enhance: compile CJS modules as a seperate set of files.
+- Enhance: add more complete stream download example.
+- Fix: question mark stripped from url when no params are given.
+- Fix: path to tests file in error handling doc.
+- Fix: import URL and URLSearchParams in typings.
+- Fix: Ensure search parameters are included in URL path (#759).
+
+## v3.0.0-beta.2
+
+- Fix: exporting `main` and `types` at the correct path, oops.
+
+## v3.0.0-beta.1
+
+- **Breaking:** minimum supported Node.js version is now 10.
+- Enhance: added new node-fetch-only option: `highWaterMark`.
+- Enhance: `AbortError` now uses a w3c defined message.
+- Enhance: data URI support.
+- Enhance: drop existing blob implementation code and use fetch-blob as dependency instead.
+- Enhance: modernise the code behind `FetchError` and `AbortError`.
+- Enhance: replace deprecated `url.parse()` and `url.replace()` with the new WHATWG's `new URL()`
+- Enhance: allow excluding a `user-agent` in a fetch request by setting it's header to null.
+- Fix: `Response.statusText` no longer sets a default message derived from the HTTP status code.
+- Fix: missing response stream error events.
+- Fix: do not use constructor.name to check object.
+- Fix: convert `Content-Encoding` to lowercase.
+- Fix: propagate size and timeout to cloned response.
+- Other: bundle TypeScript types.
+- Other: replace Rollup with @pika/pack.
+- Other: introduce linting to the project.
+- Other: simplify Travis CI build matrix.
+- Other: dev dependency update.
+- Other: readme update.
+
 
 # 2.x release
+
+## v2.6.0
+
+- Enhance: `options.agent`, it now accepts a function that returns custom http(s).Agent instance based on current URL, see readme for more information.
+- Fix: incorrect `Content-Length` was returned for stream body in 2.5.0 release; note that `node-fetch` doesn't calculate content length for stream body.
+- Fix: `Response.url` should return empty string instead of `null` by default.
+
+## v2.5.0
+
+- Enhance: `Response` object now includes `redirected` property.
+- Enhance: `fetch()` now accepts third-party `Blob` implementation as body.
+- Other: disable `package-lock.json` generation as we never commit them.
+- Other: dev dependency update.
+- Other: readme update.
+
+## v2.4.1
+
+- Fix: `Blob` import rule for node < 10, as `Readable` isn't a named export.
+
+## v2.4.0
+
+- Enhance: added `Brotli` compression support (using node's zlib).
+- Enhance: updated `Blob` implementation per spec.
+- Fix: set content type automatically for `URLSearchParams`.
+- Fix: `Headers` now reject empty header names.
+- Fix: test cases, as node 12+ no longer accepts invalid header response.
+
+## v2.3.0
+
+- Enhance: added `AbortSignal` support, with README example.
+- Enhance: handle invalid `Location` header during redirect by rejecting them explicitly with `FetchError`.
+- Fix: update `browser.js` to support react-native environment, where `self` isn't available globally.
+
+## v2.2.1
+
+- Fix: `compress` flag shouldn't overwrite existing `Accept-Encoding` header.
+- Fix: multiple `import` rules, where `PassThrough` etc. doesn't have a named export when using node <10 and `--experimental-modules` flag.
+- Other: Better README.
 
 ## v2.2.0
 
@@ -36,7 +113,7 @@ Fix packaging errors in v2.1.0.
 
 ## v2.0.0
 
-This is a major release. Check [our upgrade guide](https://github.com/bitinn/node-fetch/blob/master/UPGRADE-GUIDE.md) for an overview on some key differences between v1 and v2.
+This is a major release. Check [our upgrade guide](https://github.com/node-fetch/node-fetch/blob/master/UPGRADE-GUIDE.md) for an overview on some key differences between v1 and v2.
 
 ### General changes
 
@@ -61,7 +138,7 @@ This is a major release. Check [our upgrade guide](https://github.com/bitinn/nod
 ### Response and Request classes
 
 - Major: `response.text()` no longer attempts to detect encoding, instead always opting for UTF-8 (per spec); use `response.textConverted()` for the v1 behavior
-- Major: make `response.json()` throw error instead of returning an empty object on 204 no-content respose (per spec; reverts behavior changed in v1.6.2)
+- Major: make `response.json()` throw error instead of returning an empty object on 204 no-content response (per spec; reverts behavior changed in v1.6.2)
 - Major: internal methods are no longer exposed
 - Major: throw error when a `GET` or `HEAD` Request is constructed with a non-null body (per spec)
 - Enhance: add `response.arrayBuffer()` (also applies to Requests)
@@ -86,9 +163,9 @@ This is a major release. Check [our upgrade guide](https://github.com/bitinn/nod
 
 # 1.x release
 
-## backport releases (v1.7.0 and beyond)
+## Backport releases (v1.7.0 and beyond)
 
-See [changelog on 1.x branch](https://github.com/bitinn/node-fetch/blob/1.x/CHANGELOG.md) for details.
+See [changelog on 1.x branch](https://github.com/node-fetch/node-fetch/blob/1.x/CHANGELOG.md) for details.
 
 ## v1.6.3
 

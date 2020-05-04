@@ -1,3 +1,9 @@
+# Sketch temporary file
+~*.sketch
+
+# Generated files
+dist/
+
 # Logs
 logs
 *.log
@@ -37,3 +43,6 @@ lib
 # Ignore package manager lock files
 package-lock.json
 yarn.lock
+
+# Ignore IDE
+.idea
